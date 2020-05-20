@@ -28,9 +28,17 @@ function Write-Theme {
     $status = Get-VCSStatus
     if ($status) {
         $sl.GitSymbols.BranchSymbol = ''
-        $themeInfo = Get-VcsInfo -status ($status)
+				$HasWorkingFlag = "o"
         $prompt += Write-Prompt -Object 'on git:' -ForegroundColor $sl.Colors.PromptForegroundColor
-        $prompt += Write-Prompt -Object "$($themeInfo.VcInfo) " -ForegroundColor $themeInfo.BackgroundColor
+				$prompt += Write-Prompt -Object "$($status.Branch)" -ForegroundColor $sl.Colors.PromptHighlightColor
+				
+				# check if HasWorking
+				if ($status.HasWorking -eq "True") {
+						$prompt += Write-Prompt -Object " x " -ForegroundColor $sl.Colors.CommandFailedIconForegroundColor
+				} else {
+						$prompt += Write-Prompt -Object " o " -ForegroundColor $sl.Colors.GitDefaultColor
+				}
+				
     }
     # write virtualenv
     if (Test-VirtualEnv) {

@@ -1,0 +1,21 @@
+{
+		"name": "MorningLight",
+		"black": "#e0e0e0",
+		"red": "#e45649",
+		"green": "#50a14f",
+		"yellow": "#c18401",
+		"blue": "#0184bc",
+		"purple": "#a626a4",
+		"cyan": "#0997b3",
+		"white": "#8a8a8a",
+		"brightBlack": "#8e8f96",
+		"brightRed": "#da3e39",
+		"brightGreen": "#41933e",
+		"brightYellow": "#855504",
+		"brightBlue": "#315eee",
+		"brightPurple": "#930092",
+		"brightCyan": "#0e6fad",
+		"brightWhite": "#352d46",
+		"background": "#e0e0e0",
+		"foreground": "#000000"
+}

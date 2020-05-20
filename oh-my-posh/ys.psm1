@@ -28,10 +28,8 @@ function Write-Theme {
     $status = Get-VCSStatus
     if ($status) {
         $sl.GitSymbols.BranchSymbol = ''
-				$HasWorkingFlag = "o"
         $prompt += Write-Prompt -Object 'on git:' -ForegroundColor $sl.Colors.PromptForegroundColor
 				$prompt += Write-Prompt -Object "$($status.Branch)" -ForegroundColor $sl.Colors.PromptHighlightColor
-				
 				# check if HasWorking
 				if ($status.HasWorking -eq "True") {
 						$prompt += Write-Prompt -Object " x " -ForegroundColor $sl.Colors.CommandFailedIconForegroundColor

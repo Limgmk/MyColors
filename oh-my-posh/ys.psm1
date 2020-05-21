@@ -44,7 +44,7 @@ function Write-Theme {
         $prompt += Write-Prompt -Object "$(Get-VirtualEnvName) " -ForegroundColor $themeInfo.VirtualEnvForegroundColor
     }
     # write [time]
-    $timeStamp = Get-Date -Format T
+    $timeStamp = Get-Date -Format "HH:mm:ss"
     $prompt += Write-Prompt "[$timeStamp]" -ForegroundColor $sl.Colors.PromptForegroundColor
 		
     if ($with) {

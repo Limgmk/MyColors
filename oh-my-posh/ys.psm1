@@ -23,7 +23,7 @@ function Write-Theme {
     }
     # write folder
     $dir = Get-FullPath -dir $pwd
-    $prompt += Write-Prompt -Object " $dir " -ForegroundColor $sl.Colors.AdminIconForegroundColor
+    $prompt += Write-Prompt -Object " $dir " -ForegroundColor $sl.Colors.DriveForegroundColor
     # write on (git:branchname status)
     $status = Get-VCSStatus
     if ($status) {
@@ -32,7 +32,7 @@ function Write-Theme {
 				$prompt += Write-Prompt -Object "$($status.Branch)" -ForegroundColor $sl.Colors.PromptHighlightColor
 				# check if HasWorking
 				if ($status.HasWorking -eq "True") {
-						$prompt += Write-Prompt -Object " x " -ForegroundColor $sl.Colors.CommandFailedIconForegroundColor
+						$prompt += Write-Prompt -Object " x " -ForegroundColor $s1.Colors.GitNoLocalChangesAndBehindColor
 				} else {
 						$prompt += Write-Prompt -Object " o " -ForegroundColor $sl.Colors.GitDefaultColor
 				}
@@ -46,25 +46,13 @@ function Write-Theme {
     # write [time]
     $timeStamp = Get-Date -Format T
     $prompt += Write-Prompt "[$timeStamp]" -ForegroundColor $sl.Colors.PromptForegroundColor
-    # check for elevated prompt
-    If (Test-Administrator) {
-        $prompt += Write-Prompt -Object "$($sl.PromptSymbols.ElevatedSymbol) " -ForegroundColor $sl.Colors.AdminIconForegroundColor
-    }
-		
-    # check the last command state and indicate if failed
-    # $foregroundColor = $sl.Colors.PromptHighlightColor
-		
-		$foregroundColor = $sl.Colors.CommandFailedIconForegroundColor
-    #If ($lastCommandFailed) {
-    #    $foregroundColor = $sl.Colors.CommandFailedIconForegroundColor
-    #}
 		
     if ($with) {
         $prompt += Write-Prompt -Object "$($with.ToUpper()) " -BackgroundColor $sl.Colors.WithBackgroundColor -ForegroundColor $sl.Colors.WithForegroundColor
     }
 
     $prompt += Set-Newline
-    $prompt += Write-Prompt -Object $sl.PromptSymbols.PromptIndicator -ForegroundColor $foregroundColor
+    $prompt += Write-Prompt -Object $sl.PromptSymbols.PromptIndicator -ForegroundColor $sl.Colors.CommandFailedIconForegroundColor
     $prompt += ' '
     $prompt
 }
@@ -73,13 +61,16 @@ function Get-TimeSinceLastCommit {
     return (git log --pretty=format:'%cr' -1)
 }
 
+
 $sl = $global:ThemeSettings #local settings
 $sl.PromptSymbols.StartSymbol = '#'
 $sl.PromptSymbols.PromptIndicator = '$'
 $sl.Colors.PromptSymbolColor = [ConsoleColor]::Blue
-$sl.Colors.PromptForegroundColor = [ConsoleColor]::DarkWhite
-$sl.Colors.PromptHighlightColor = [ConsoleColor]::Cyan
-$sl.Colors.WithForegroundColor = [ConsoleColor]::DarkRed
+$sl.Colors.PromptForegroundColor = [ConsoleColor]::ForegroundColor
+$sl.Colors.PromptHighlightColor = [ConsoleColor]::DarkCyan
 $sl.Colors.WithBackgroundColor = [ConsoleColor]::Magenta
 $sl.Colors.VirtualEnvForegroundColor = [ConsoleColor]::Red
-$sl.Colors.AdminIconForegroundColor = [ConsoleColor]::Yellow
+$sl.Colors.DriveForegroundColor = [ConsoleColor]::Yellow
+$sl.Colors.CommandFailedIconForegroundColor = [ConsoleColor]::Red
+$sl.Colors.GitDefaultColor = [ConsoleColor]::DarkGreen
+$s1.Colors.GitNoLocalChangesAndBehindColor = [ConsoleColor]::DarkRed

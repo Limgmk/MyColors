@@ -32,7 +32,7 @@ function Write-Theme {
 				$prompt += Write-Prompt -Object "$($status.Branch)" -ForegroundColor $sl.Colors.PromptHighlightColor
 				# check if HasWorking
 				if ($status.HasWorking -eq "True") {
-						$prompt += Write-Prompt -Object " x " -ForegroundColor $s1.Colors.GitNoLocalChangesAndBehindColor
+						$prompt += Write-Prompt -Object " x " -ForegroundColor $sl.Colors.GitNoLocalChangesAndBehindColor
 				} else {
 						$prompt += Write-Prompt -Object " o " -ForegroundColor $sl.Colors.GitDefaultColor
 				}
@@ -73,4 +73,4 @@ $sl.Colors.VirtualEnvForegroundColor = [ConsoleColor]::Red
 $sl.Colors.DriveForegroundColor = [ConsoleColor]::Yellow
 $sl.Colors.CommandFailedIconForegroundColor = [ConsoleColor]::Red
 $sl.Colors.GitDefaultColor = [ConsoleColor]::DarkGreen
-$s1.Colors.GitNoLocalChangesAndBehindColor = [ConsoleColor]::DarkRed
+$sl.Colors.GitNoLocalChangesAndBehindColor = [ConsoleColor]::DarkRed

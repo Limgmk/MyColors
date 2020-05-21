@@ -7,6 +7,8 @@ function Write-Theme {
         [string]
         $with
     )
+		
+		$prompt += Set-Newline
 
     # write # and space
     $prompt = Write-Prompt -Object $sl.PromptSymbols.StartSymbol -ForegroundColor $sl.Colors.PromptSymbolColor
